@@ -1,0 +1,50 @@
+<svg height="750" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="750" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26">9 megabytes installed</tspan>
+<tspan x="10" y="42"></tspan>
+<tspan x="10" y="58">node_modules</tspan>
+<tspan x="10" y="74">├── ansi-regex@2.1.1 </tspan>
+<tspan x="10" y="90">├── ansi-styles@2.2.1 </tspan>
+<tspan x="10" y="106">├── balanced-match@0.4.2 </tspan>
+<tspan x="10" y="122">├─┬ bower-config@1.4.0 </tspan>
+<tspan x="10" y="138">│ ├── graceful-fs@4.1.11 </tspan>
+<tspan x="10" y="154">│ ├── mout@1.0.0 </tspan>
+<tspan x="10" y="170">│ ├─┬ optimist@0.6.1 </tspan>
+<tspan x="10" y="186">│ │ ├── minimist@0.0.10 </tspan>
+<tspan x="10" y="202">│ │ └── wordwrap@0.0.3 </tspan>
+<tspan x="10" y="218">│ ├─┬ osenv@0.1.4 </tspan>
+<tspan x="10" y="234">│ │ ├── os-homedir@1.0.2 </tspan>
+<tspan x="10" y="250">│ │ └── os-tmpdir@1.0.2 </tspan>
+<tspan x="10" y="266">│ └── untildify@2.1.0 </tspan>
+<tspan x="10" y="282">├─┬ brace-expansion@1.1.7 </tspan>
+<tspan x="10" y="298">│ └── concat-map@0.0.1 </tspan>
+<tspan x="10" y="314">├── buffer-shims@1.0.0 </tspan>
+<tspan x="10" y="330">├─┬ chalk@1.1.3 </tspan>
+<tspan x="10" y="346">│ ├── escape-string-regexp@1.0.5 </tspan>
+<tspan x="10" y="362">│ ├── has-ansi@2.0.0 </tspan>
+<tspan x="10" y="378">│ ├── strip-ansi@3.0.1 </tspan>
+<tspan x="10" y="394">│ └── supports-color@2.0.0 </tspan>
+<tspan x="10" y="410">├── core-util-is@1.0.2 </tspan>
+<tspan x="10" y="426">├── fs.realpath@1.0.0 </tspan>
+<tspan x="10" y="442">├─┬ glob@7.1.1 </tspan>
+<tspan x="10" y="458">│ ├─┬ inflight@1.0.6 </tspan>
+<tspan x="10" y="474">│ │ └── wrappy@1.0.2 </tspan>
+<tspan x="10" y="490">│ ├── inherits@2.0.3 </tspan>
+<tspan x="10" y="506">│ ├── minimatch@3.0.3 </tspan>
+<tspan x="10" y="522">│ ├── once@1.4.0 </tspan>
+<tspan x="10" y="538">│ └── path-is-absolute@1.0.1 </tspan>
+<tspan x="10" y="554">├── isarray@1.0.0 </tspan>
+<tspan x="10" y="570">├── lodash@4.17.4 </tspan>
+<tspan x="10" y="586">├── process-nextick-args@1.0.7 </tspan>
+<tspan x="10" y="602">├── propprop@0.3.1 </tspan>
+<tspan x="10" y="618">├─┬ readable-stream@2.2.8 </tspan>
+<tspan x="10" y="634">│ ├── string_decoder@1.0.0 </tspan>
+<tspan x="10" y="650">│ └── util-deprecate@1.0.2 </tspan>
+<tspan x="10" y="666">├─┬ through2@2.0.3 </tspan>
+<tspan x="10" y="682">│ └── xtend@4.0.1 </tspan>
+<tspan x="10" y="698">└─┬ wiredep@4.0.0 </tspan>
+<tspan x="10" y="714">  └─┬ wiredep-cli@0.1.0 </tspan>
+<tspan x="10" y="730">    └── minimist@1.2.0</tspan>
+</text>
+</svg>
