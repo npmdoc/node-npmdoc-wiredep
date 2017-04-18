@@ -38,7 +38,7 @@
 <tspan x="10" y="570">├── lodash@4.17.4 </tspan>
 <tspan x="10" y="586">├── process-nextick-args@1.0.7 </tspan>
 <tspan x="10" y="602">├── propprop@0.3.1 </tspan>
-<tspan x="10" y="618">├─┬ readable-stream@2.2.8 </tspan>
+<tspan x="10" y="618">├─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="634">│ ├── string_decoder@1.0.0 </tspan>
 <tspan x="10" y="650">│ └── util-deprecate@1.0.2 </tspan>
 <tspan x="10" y="666">├─┬ through2@2.0.3 </tspan>
