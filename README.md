@@ -1,6 +1,6 @@
 # npmdoc-wiredep
 
-#### api documentation for  [wiredep (v4.0.0)](https://github.com/taptapship/wiredep#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-wiredep.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-wiredep) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-wiredep.svg)](https://travis-ci.org/npmdoc/node-npmdoc-wiredep)
+#### basic api documentation for  [wiredep (v4.0.0)](https://github.com/taptapship/wiredep#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-wiredep.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-wiredep) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-wiredep.svg)](https://travis-ci.org/npmdoc/node-npmdoc-wiredep)
 
 #### Wire Bower dependencies to your source code.
 
@@ -89,7 +89,8 @@
         "coverage": "istanbul cover _mocha -- -R spec",
         "test": "jshint *.js lib/*.js test/*.js && NODE_ENV=test mocha -R spec"
     },
-    "version": "4.0.0"
+    "version": "4.0.0",
+    "bin": {}
 }
 ```
 
