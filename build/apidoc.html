@@ -63,24 +63,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.wiredep.wiredep">
-            function <span class="apidocSignatureSpan"></span>wiredep
-            <span class="apidocSignatureSpan">(opts)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.wiredep.stream">
-            function <span class="apidocSignatureSpan">wiredep.</span>stream
-            <span class="apidocSignatureSpan">(opts)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">wiredep.</span>helpers</span>
 
         </li>
@@ -100,147 +82,10 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.wiredep.wiredep">module wiredep.wiredep</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.wiredep.wiredep.wiredep">
-            function <span class="apidocSignatureSpan">wiredep.</span>wiredep
-            <span class="apidocSignatureSpan">(opts)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.wiredep.wiredep.stream">
-            function <span class="apidocSignatureSpan">wiredep.wiredep.</span>stream
-            <span class="apidocSignatureSpan">(opts)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.wiredep" id="apidoc.module.wiredep">module wiredep</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.wiredep.wiredep" id="apidoc.element.wiredep.wiredep">
-        function <span class="apidocSignatureSpan"></span>wiredep
-        <span class="apidocSignatureSpan">(opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function wiredep(opts) {
-  opts = opts || {};
-
-  var cwd = opts.cwd ? $.path.resolve(opts.cwd) : process.cwd();
-
-  config = module.exports.config = helpers.createStore();
-
-  config.set
-    (&#x27;on-error&#x27;, opts.onError || function(err) { throw new Error(err); })
-    (&#x27;on-file-updated&#x27;, opts.onFileUpdated || function() {})
-    (&#x27;on-main-not-found&#x27;, opts.onMainNotFound || function() {})
-    (&#x27;on-path-injected&#x27;, opts.onPathInjected || function() {});
-
-  config.set
-    (&#x27;bower.json&#x27;, opts.bowerJson || JSON.parse($.fs.readFileSync($.path.join(cwd, &#x27;./bower.json&#x27;))))
-    (&#x27;bower-directory&#x27;, opts.directory || findBowerDirectory(cwd))
-    (&#x27;cwd&#x27;, cwd)
-    (&#x27;dependencies&#x27;, opts.dependencies === false ? false : true)
-    (&#x27;detectable-file-types&#x27;, [])
-    (&#x27;dev-dependencies&#x27;, opts.devDependencies)
-    (&#x27;exclude&#x27;, Array.isArray(opts.exclude) ? opts.exclude : [ opts.exclude ])
-    (&#x27;file-types&#x27;, mergeFileTypesWithDefaults(opts.fileTypes))
-    (&#x27;global-dependencies&#x27;, helpers.createStore())
-    (&#x27;ignore-path&#x27;, opts.ignorePath)
-    (&#x27;include-self&#x27;, opts.includeSelf)
-    (&#x27;overrides&#x27;, $._.extend({}, config.get(&#x27;bower.json&#x27;).overrides, opts.overrides))
-    (&#x27;src&#x27;, [])
-    (&#x27;stream&#x27;, opts.stream ? opts.stream : {});
-
-  $._.map(config.get(&#x27;file-types&#x27;), &#x27;detect&#x27;).
-    forEach(function (fileType) {
-      Object.keys(fileType).
-        forEach(function (detectableFileType) {
-          var detectableFileTypes = config.get(&#x27;detectable-file-types&#x27;);
-
-          if (detectableFileTypes.indexOf(detectableFileType) === -1) {
-            config.set(&#x27;detectable-file-types&#x27;, detectableFileTypes.concat(detectableFileType));
-          }
-        });
-    });
-
-  if (!opts.stream &#x26;&#x26; opts.src) {
-    (Array.isArray(opts.src) ? opts.src : [opts.src]).
-      forEach(function (pattern) {
-        config.set(&#x27;src&#x27;, config.get(&#x27;src&#x27;).concat($.glob.sync(pattern)));
-      });
-  }
-
-  require(&#x27;./lib/detect-dependencies&#x27;)(config);
-  require(&#x27;./lib/inject-dependencies&#x27;)(config);
-
-  return config.get(&#x27;stream&#x27;).src ||
-    Object.keys(config.get(&#x27;global-dependencies-sorted&#x27;)).
-      reduce(function (acc, depType) {
-        if (config.get(&#x27;global-dependencies-sorted&#x27;)[depType].length) {
-          acc[depType] = config.get(&#x27;global-dependencies-sorted&#x27;)[depType];
-        }
-
-        return acc;
-      }, { packages: config.get(&#x27;global-dependencies&#x27;).get() });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.wiredep.stream" id="apidoc.element.wiredep.stream">
-        function <span class="apidocSignatureSpan">wiredep.</span>stream
-        <span class="apidocSignatureSpan">(opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">stream = function (opts) {
-  opts = opts || {};
-
-  return $.through2.obj(function (file, enc, cb) {
-    if (file.isNull()) {
-      this.push(file);
-      return cb();
-    }
-
-    if (file.isStream()) {
-      this.emit(&#x27;error&#x27;, &#x27;Streaming not supported&#x27;);
-      return cb();
-    }
-
-    try {
-      opts.stream = {
-        src: file.contents.toString(),
-        path: file.path,
-        fileType: $.path.extname(file.path).substr(1)
-      };
-
-      file.contents = new Buffer(wiredep(opts));
-    } catch (err) {
-      this.emit(&#x27;error&#x27;, err);
-    }
-
-    this.push(file);
-    cb();
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
 
 
 
@@ -291,127 +136,22 @@
     get: get
   };
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param  {object} config  the global configuration object
+ */
+function wiredep(opts) {
+opts = opts || {};
 
+var cwd = opts.cwd ? $.path.resolve(opts.cwd) : process.cwd();
 
-</div>
+config = module.exports.config = helpers.<span class="apidocCodeKeywordSpan">createStore</span>();
 
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.wiredep.wiredep" id="apidoc.module.wiredep.wiredep">module wiredep.wiredep</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.wiredep.wiredep.wiredep" id="apidoc.element.wiredep.wiredep.wiredep">
-        function <span class="apidocSignatureSpan">wiredep.</span>wiredep
-        <span class="apidocSignatureSpan">(opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function wiredep(opts) {
-  opts = opts || {};
-
-  var cwd = opts.cwd ? $.path.resolve(opts.cwd) : process.cwd();
-
-  config = module.exports.config = helpers.createStore();
-
-  config.set
-    (&#x27;on-error&#x27;, opts.onError || function(err) { throw new Error(err); })
-    (&#x27;on-file-updated&#x27;, opts.onFileUpdated || function() {})
-    (&#x27;on-main-not-found&#x27;, opts.onMainNotFound || function() {})
-    (&#x27;on-path-injected&#x27;, opts.onPathInjected || function() {});
-
-  config.set
-    (&#x27;bower.json&#x27;, opts.bowerJson || JSON.parse($.fs.readFileSync($.path.join(cwd, &#x27;./bower.json&#x27;))))
-    (&#x27;bower-directory&#x27;, opts.directory || findBowerDirectory(cwd))
-    (&#x27;cwd&#x27;, cwd)
-    (&#x27;dependencies&#x27;, opts.dependencies === false ? false : true)
-    (&#x27;detectable-file-types&#x27;, [])
-    (&#x27;dev-dependencies&#x27;, opts.devDependencies)
-    (&#x27;exclude&#x27;, Array.isArray(opts.exclude) ? opts.exclude : [ opts.exclude ])
-    (&#x27;file-types&#x27;, mergeFileTypesWithDefaults(opts.fileTypes))
-    (&#x27;global-dependencies&#x27;, helpers.createStore())
-    (&#x27;ignore-path&#x27;, opts.ignorePath)
-    (&#x27;include-self&#x27;, opts.includeSelf)
-    (&#x27;overrides&#x27;, $._.extend({}, config.get(&#x27;bower.json&#x27;).overrides, opts.overrides))
-    (&#x27;src&#x27;, [])
-    (&#x27;stream&#x27;, opts.stream ? opts.stream : {});
-
-  $._.map(config.get(&#x27;file-types&#x27;), &#x27;detect&#x27;).
-    forEach(function (fileType) {
-      Object.keys(fileType).
-        forEach(function (detectableFileType) {
-          var detectableFileTypes = config.get(&#x27;detectable-file-types&#x27;);
-
-          if (detectableFileTypes.indexOf(detectableFileType) === -1) {
-            config.set(&#x27;detectable-file-types&#x27;, detectableFileTypes.concat(detectableFileType));
-          }
-        });
-    });
-
-  if (!opts.stream &#x26;&#x26; opts.src) {
-    (Array.isArray(opts.src) ? opts.src : [opts.src]).
-      forEach(function (pattern) {
-        config.set(&#x27;src&#x27;, config.get(&#x27;src&#x27;).concat($.glob.sync(pattern)));
-      });
-  }
-
-  require(&#x27;./lib/detect-dependencies&#x27;)(config);
-  require(&#x27;./lib/inject-dependencies&#x27;)(config);
-
-  return config.get(&#x27;stream&#x27;).src ||
-    Object.keys(config.get(&#x27;global-dependencies-sorted&#x27;)).
-      reduce(function (acc, depType) {
-        if (config.get(&#x27;global-dependencies-sorted&#x27;)[depType].length) {
-          acc[depType] = config.get(&#x27;global-dependencies-sorted&#x27;)[depType];
-        }
-
-        return acc;
-      }, { packages: config.get(&#x27;global-dependencies&#x27;).get() });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.wiredep.wiredep.stream" id="apidoc.element.wiredep.wiredep.stream">
-        function <span class="apidocSignatureSpan">wiredep.wiredep.</span>stream
-        <span class="apidocSignatureSpan">(opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">stream = function (opts) {
-  opts = opts || {};
-
-  return $.through2.obj(function (file, enc, cb) {
-    if (file.isNull()) {
-      this.push(file);
-      return cb();
-    }
-
-    if (file.isStream()) {
-      this.emit(&#x27;error&#x27;, &#x27;Streaming not supported&#x27;);
-      return cb();
-    }
-
-    try {
-      opts.stream = {
-        src: file.contents.toString(),
-        path: file.path,
-        fileType: $.path.extname(file.path).substr(1)
-      };
-
-      file.contents = new Buffer(wiredep(opts));
-    } catch (err) {
-      this.emit(&#x27;error&#x27;, err);
-    }
-
-    this.push(file);
-    cb();
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+config.set
+  (&#x27;on-error&#x27;, opts.onError || function(err) { throw new Error(err); })
+  (&#x27;on-file-updated&#x27;, opts.onFileUpdated || function() {})
+  (&#x27;on-main-not-found&#x27;, opts.onMainNotFound || function() {})
+  (&#x27;on-path-injected&#x27;, opts.onPathInjected || function() {});
+...</pre></li>
     </ul>
 
 
